@@ -80,6 +80,7 @@ table{
 }
 #placeholder{
     width: 100%;
+    height: 600px;
 }
 
 article nav {
@@ -88,10 +89,85 @@ article nav {
 
 #placeholder1 {
     margin: 0 auto;
+    width: 100%;
+    height: 600px;
 }
 label{
     display: block;
 }
 fieldset{
     border:0;
+}
+
+#all{
+    background-color: #fff;
+    position: relative;
+}
+#picSwichArrow {
+    position: relative;
+    width: 100%;
+    height: 100px;
+    overflow: hidden;
+    margin: 20px 0;
+}
+.arrowbtn_left {
+    position: absolute;
+    left: 0;
+    top: 25px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+.arrowbtn_right {
+    position: absolute;
+    right: 0;
+    top: 25px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+#picSwichArrow .arrowbtn_left img{
+    width: 100%;
+}
+#picSwichArrow .arrowbtn_right img{
+    width: 100%;
+}
+.vg_tasklist {
+    position: absolute;
+    overflow: hidden;
+    margin: 0px 50px 0px 50px;
+    /*width: 75%;*/
+    height: 100%;
+    /* text-align: center; */
+    /* left: 0px; */
+}
+
+.vg_tasklist ul {
+    /*width: 100%;*/
+    display: inline-block;
+    overflow: hidden;
+    height: 100px;
+    flex-wrap: nowrap;
+}
+
+.vg_tasklist li{
+    width: 100px;
+    height: 100px;
+    left: 0px;
+    justify-content:space-between;
+    border:1px solid #c8c8c8;
+    position: relative;
+    float: left;
+}
+#big_left{
+    position: absolute;
+    left: 0;
+    width: 50px;
+    top:50%;
+}
+#big_right{
+    position: absolute;
+    right: 0;
+    width: 50px;
+    top:50%;
 }
