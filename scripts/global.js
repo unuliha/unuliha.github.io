@@ -278,7 +278,7 @@ function swichPic() {
         }
 
         function getInfo() {
-            linum = $("#imagegallery").find("li").size();
+            linum = $("#imagegallery").find("li").length;
             shownum = 6;
             // let body = $("#body");
             // if (body.hasClass("grid-1010")) {
