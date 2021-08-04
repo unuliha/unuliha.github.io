@@ -343,7 +343,7 @@ function bigSwich() {
 
     //将图片保存在数组中
     let arr = new Array();
-    let linum = $("#imagegallery").find("li").size();
+    let linum = $("#imagegallery").find("li").length;
     for (let i = 0; i < linum; i++) {
         arr.push($(`#imagegallery li:eq(${i}) a`).attr("href"));
     }
