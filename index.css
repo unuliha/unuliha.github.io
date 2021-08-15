@@ -1,0 +1,324 @@
+body{
+    position: absolute;
+    background: url("https://gitee.com/unuliha/img01/raw/master/we.jpg");
+    /*width: min(100%,925px);*/
+    width: 100%;
+    min-width: 850px;
+    height: 100%;
+    background-repeat:no-repeat;
+    background-position: center 0;
+    background-attachment:fixed;
+    background-size:cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(20px);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.wrap{
+    /*border: 1px solid #9999aa;*/
+    border-radius: 5%;
+    width: 80%;
+    height: 450px;
+    left: 50%;
+    top: 50%;
+    display: flex;
+    overflow: hidden;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+#player{
+    width: 100%;
+    height: 100%;
+}
+.search_bar {
+    height: 60px;
+    background-color: rgb(84, 187, 243);
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 11;
+}
+.search_bar img{
+    width: 40px;
+    height:40px;
+    border-radius: 100px;
+    position: relative;
+    left: 20px;
+}
+
+.search_bar input {
+    margin-right: 23px;
+    width: 296px;
+    height: 34px;
+    border-radius: 17px;
+    border: 0px;
+    background: url(https://nextlab.oss-cn-shanghai.aliyuncs.com/img/9FeKnVlohsY3krO.png) 265px center no-repeat rgba(255, 255, 255, 0.45);
+    text-indent: 15px;
+    outline: none;
+}
+
+.center_con {
+    background-color: rgba(255, 255, 255, 0.5);
+    display: flex;
+    width: 100%;
+    height: 340px;
+    overflow: hidden;
+}
+
+.song_wrapper {
+    width: 200px;
+    height: 330px;
+    box-sizing: border-box;
+    /*padding: 10px;*/
+    list-style: none;
+    display: flex;
+    z-index: 1;
+    overflow: hidden;
+    position: relative;
+    margin-top: 5px;
+}
+.song_list_wrapper{
+    position: absolute;
+    overflow-y: scroll;
+    height: 340px;
+    overflow-x: hidden;
+}
+.song_list {
+    width:200px;
+    height: 340px;
+    display: flex;
+    flex-direction: column;
+    /*overflow: hidden;*/
+    padding-left: 5px;
+}
+
+.song_list li {
+    color: #333;
+    height: 43px;
+    width: 100%;
+    padding-left: 10px;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.song_list li a {
+    display: block;
+    width: 17px;
+    height: 17px;
+    background-image: url(https://nextlab.oss-cn-shanghai.aliyuncs.com/img/chJ89uNpofneFrS.png);
+    background-size: 100%;
+    margin-right: 5px;
+    box-sizing: border-box;
+}
+.song_list li span{
+    width: 23px;
+    height: 17px;
+    margin-right: 10px;
+    position:absolute ;
+    right: 0;
+}
+.song_list li span i {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    background: url(https://nextlab.oss-cn-shanghai.aliyuncs.com/img/HFyBnJ5loLhI7qK.png) left -48px no-repeat;
+}
+/*.song_list li:nth-child(odd) {*/
+/*    background-color: rgba(240, 240, 240, 0.3);*/
+/*}*/
+.song_list li b{
+    font-weight: normal;
+    width: 122px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+ul {
+    list-style-type: disc;
+}
+
+.player_con {
+    width: 255px;
+    height: min(100%,340px);
+    right: 45%;
+    margin:auto;
+    position: absolute;
+    /*width: 400px;*/
+    /*height: 435px;*/
+    /*top: 0px;*/
+    overflow: hidden;
+}
+
+.play_bar {
+    position: absolute;
+    /*width: 15%;*/
+    top:-5px;
+    left: 100px;
+    z-index: 10;
+    transform: rotate(
+            -25deg
+    );
+    transform-origin: top left;
+}
+.disc{
+    position: absolute;
+    top:70px;
+    /*width: 30%;*/
+    padding-bottom: 30%;
+    padding:0;
+}
+.cover {
+    position: absolute;
+    top:120px;
+    left: 52px;
+    width: 150px;
+    border-radius: 100%;
+    z-index: 8;
+}
+.autoRotate {
+    animation-name: Rotate;
+    animation-iteration-count: infinite;
+    animation-play-state: paused;
+    animation-timing-function: linear;
+    animation-duration: 5s;
+}
+.player_con.playing .disc,
+.player_con.playing .cover,
+.search_bar img{
+    animation-play-state: running;
+}
+.player_con.playing .play_bar .search_bar img {
+    transform: rotate(0);
+}
+@keyframes Rotate {
+    from {
+        transform: rotateZ(0);
+    }
+    to {
+        transform: rotateZ(360deg);
+    }
+}
+
+.comment_wrapper  {
+    display: flex;
+    flex-direction: column;
+    overflow:hidden;
+    position: absolute;
+    right: 11%;
+    width: 30%;
+    height: min(100%,330px);
+    /*background: url("https://i.loli.net/2020/03/23/dor23bhZtIvK17X.png");*/
+}
+
+.right_line{
+    top:0%;
+    right: 30%;
+}
+.comment_list{
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    width: 106%;
+}
+.title{
+    display: block;
+    font-size: 0.83em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    font-weight: bold;
+}
+
+.comment_wrapper dl {
+    padding-top: 0;
+    padding-left: 5%;
+    display: block;
+    margin-top: 0;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+}
+.comment_wrapper dl dt{
+    width: 25px;
+}
+.comment_wrapper dl div{
+    height: 30px;
+}
+.comment_wrapper dt img {
+    width: 100%;
+    border-radius: 20px;
+}
+.comment_wrapper .name {
+    font-weight: bold;
+    color: #333;
+    /*margin-inline-start: 40px;*/
+    position: relative;
+    top: -26px;
+    font-size: 1px;
+}
+.audio_con {
+    width: 100%;
+    height: 60px;
+    background-color: #f1f3f4;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+
+}
+.myaudio{
+    width: 100%;
+}
+.detail,.song_list{
+    display: block;
+    font-size: 1px;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    line-height: 2;
+    margin-inline-end: 5em;
+}
+
+.video_con video {
+    position: fixed;
+    width: 900px;
+    height: 546px;
+    left: 50%;
+    top: 50%;
+    margin-top: -273px;
+    transform: translateX(-50%);
+    z-index: 990;
+}
+.video_con .mask {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 980;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+.video_con .shutoff {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    background: url("https://nextlab.oss-cn-shanghai.aliyuncs.com/img/ZWSChyBwjA5uRfL.png") no-repeat;
+    left: 50%;
+    margin-left: 400px;
+    margin-top: -273px;
+    top: 50%;
+    z-index: 995;
+}
+video {
+    object-fit: contain;
+}
