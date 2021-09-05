@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>自制音乐播放器_U2</title>
     <link rel="stylesheet" media="screen" href="index.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 </head>
 <body>
     <div class="wrap" id="app">
@@ -25,15 +26,16 @@
                             </span>
                         </li>
                     </ul>
-<!--                    <img src="![](https://nextlab.oss-cn-shanghai.aliyuncs.com/img/dor23bhZtIvK17X.htm)"-->
-<!--                         alt="line" class="left_line">-->
                     </div>
                 </div>
 <!--                歌曲信息容器-->
-                <div class="player_con" :class="{playing:isPlaying}">
+                <div class="player_con" :class="{playing:isPlaying}" @click="lycShowChange" v-show="!lycShowing">
                     <img src="https://nextlab.oss-cn-shanghai.aliyuncs.com/img/gZHko2WlpJNcGPv.png" class="play_bar">
                     <img src="https://nextlab.oss-cn-shanghai.aliyuncs.com/img/hQPuH4gNRx7XayI.png" class="disc autoRotate">
                     <img :src="musicCover" class="cover autoRotate"/>
+                </div>
+                <div class="lyrics"  v-show="lycShowing" @click="lycShowChange" >
+                    <ul class="lyricsList"></ul>
                 </div>
 <!--                评论容器-->
                 <div class="comment_wrapper">
@@ -53,9 +55,9 @@
                     </div>
                 </div>
             </div>
-            <div class="audio_con">
-                <audio ref="audio" @play="play" @pause="pause" :src="musicUrl" controls autoplay loop
-                       class="myaudio"></audio>
+            <div class="audio_con"  >
+                <audio id="audio" ref="audio" @play="play" @pause="pause"
+                       :src="musicUrl" controls autoplay loop class="myaudio"></audio>
             </div>
             <div class="video_con"  v-show="isShow" style="display: none;">
                 <video :src="mvUrl" controls="controls" ref="video" type="video/mp4"></video>
@@ -76,11 +78,14 @@
             hotComments:[],
             isPlaying:false,
             isShow:false,
-            mvUrl:""
+            mvUrl:"",
+            lyc:"",
+            lrcArray:[],
+            lycShowing:false
         },
         methods:{
             searchMusic(){
-                let that=this;
+                let that = this;
                 axios.get("https://autumnfish.cn/search?keywords="+that.query)
                 .then(function (response){
                     that.musicList = response.data.result.songs;
@@ -91,7 +96,6 @@
                 //获取歌曲地址
                 axios.get("https://autumnfish.cn/song/url?id="+musicId)
                 .then(function (response){
-                    // console.log(response.data);
                     that.musicUrl = response.data.data[0].url;
                 },function (err){});
 
@@ -101,16 +105,20 @@
                     that.musicCover = response.data.songs[0].al.picUrl;
                 },function (err){});
 
-                //获取歌曲详情
+                //获取评论详情
                 axios.get("https://autumnfish.cn/comment/hot?type=0&id="+musicId)
                 .then(function (response){
                     that.hotComments = response.data.hotComments;
-                    console.log(response);
                 },function (err){});
+
+                axios.get("https://autumnfish.cn//lyric?id="+musicId)
+                    .then(function (response){
+                        that.lyc = response.data.lrc.lyric;
+                        that.prepareLrc();
+                    },function (err){});
             },
             play(){
                 this.isPlaying = true;
-
             },
             pause(){
                 this.isPlaying = false;
@@ -128,8 +136,54 @@
             hide(){
                 this.isShow = false;
                 this.$refs.video.pause();
-            }
+            },
+            lycShowChange(){
+                this.lycShowing = !this.lycShowing;
+            },
+            prepareLrc() {
+                var lrcArray = [];
+                var lrc = this.lyc.split('\n');
 
+                $.each(lrc, function (i, item) {
+                    //过滤空白文本
+                    if (item.split(']')[1] == "" || item == "" || item.indexOf('作曲') !== -1 || item.indexOf('作词') !== -1) {
+                        return true;
+                    }
+                    //转化时间
+                    var timeStr = item.substring(item.indexOf("[") + 1, item.indexOf("]"));
+                    var min = parseInt(timeStr.split(':')[0]) * 60;
+                    var sec = parseFloat(timeStr.split(':')[1]);
+                    var time = parseFloat((min + sec).toFixed(2));
+                    //添加进数组
+                    lrcArray.push({
+                        t: time,
+                        c: item.substring(item.indexOf(']') + 1)
+                    });
+                });
+                this.lrcArray = lrcArray;
+
+                //显示歌词
+                var html = "";
+                $('.lyricsList').empty();
+                $.each(lrcArray, function (i, v) {
+                    html += '<li>' + v.c + '</li>';
+                });
+                $('.lyricsList').append(html);
+
+                $('#audio')[0].ontimeupdate = function() {
+                    $.each(lrcArray, function(i, v) {
+                        if ($('#audio')[0].currentTime >= lrcArray[i].t) {
+                            $('.lyricsList').css('margin-top', '');
+                            $('.lyricsList li').eq(i).addClass('highlight');
+                            $('.lyricsList li').eq(i).siblings().removeClass('highlight');
+                            if (i > 6) {
+                                $('.lyricsList').css('margin-top', (-i + 6) * 30 + 'px');
+                            }
+                        }
+                    });
+                    if ($('#audio')[0].currentTime<0.001 ){ $('.lyricsList').css('margin-top', '')};
+                }
+            },
         }
     })
 </script>

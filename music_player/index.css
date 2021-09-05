@@ -198,11 +198,10 @@ ul {
     animation-duration: 5s;
 }
 .player_con.playing .disc,
-.player_con.playing .cover,
-.search_bar img{
+.player_con.playing .cover{
     animation-play-state: running;
 }
-.player_con.playing .play_bar .search_bar img {
+.player_con.playing .play_bar  {
     transform: rotate(0);
 }
 @keyframes Rotate {
@@ -321,4 +320,30 @@ ul {
 }
 video {
     object-fit: contain;
+}
+
+.lyrics {
+    /*height: 32%;*/
+    padding-top: 8px;
+    overflow: hidden;
+    width: 255px;
+}
+.lyrics .lyricsList {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.lyrics .lyricsList li {
+    height: 30px;
+    line-height: 15px;
+    font-size: 12px;
+    list-style-type: none;
+}
+
+.highlight {
+  color: #d78508;
+  text-shadow: 0 0 10px #ded1fc;
 }
