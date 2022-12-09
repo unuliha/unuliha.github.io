@@ -1,6 +1,6 @@
 body{
     position: absolute;
-    background: url("https://gitee.com/unuliha/img01/raw/master/we.jpg");
+    background: url("./we.jpg");
     /*width: min(100%,925px);*/
     width: 100%;
     min-width: 850px;
