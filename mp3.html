@@ -64,7 +64,7 @@
         </div>
     </div>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 <script>
     var app = new Vue({
         el:"#app",
@@ -80,8 +80,7 @@
         },
         methods:{
             searchMusic(){
-                let that=this;
-                axios.get("https://autumnfish.cn/search?keywords="+that.query)
+                axios.get("https://autumnfish.cn/search?keywords="+query)
                 .then(function (response){
                     that.musicList = response.data.result.songs;
                 },function (err){})
