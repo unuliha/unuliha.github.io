@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" name="referrer" content="no-referrer">
     <title>自制音乐播放器_U2</title>
     <link rel="stylesheet" media="screen" href="index.css">
 </head>
@@ -20,13 +20,11 @@
                         <li v-for="item in musicList">
                             <a href="javascript:;" @click = "playMusic(item.id)"></a>
                             <b>{{item.name}}</b>
-                            <span v-if="item.mvid!=0" @click="playMv(item.mvid)">
+                            <span v-if="item.mv>0" @click="playMv(item.mv)">
                                 <i></i>
                             </span>
                         </li>
                     </ul>
-<!--                    <img src="![](https://nextlab.oss-cn-shanghai.aliyuncs.com/img/dor23bhZtIvK17X.htm)"-->
-<!--                         alt="line" class="left_line">-->
                     </div>
                 </div>
 <!--                歌曲信息容器-->
@@ -63,12 +61,13 @@
             </div>
         </div>
     </div>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script src="https://unpkg.com/axios@1.2.1/dist/axios.min.js"></script>
+<script src="https://unpkg.com/vue@3.2.45/dist/vue.global.js"></script>
 <script>
-    var app = new Vue({
-        el:"#app",
-        data:{
+    const { createApp } = Vue
+    var app = createApp({
+        data(){
+            return {
             query:'',
             musicList:[],
             musicUrl:'',
@@ -77,35 +76,35 @@
             isPlaying:false,
             isShow:false,
             mvUrl:""
+            }
         },
         methods:{
             searchMusic(){
-                axios.get("https://autumnfish.cn/search?keywords="+query)
-                .then(function (response){
+                let that = this;
+                axios.get("https://autumnfish.cn/search?keywords="+that.query)
+                .then( (response)=>{
                     that.musicList = response.data.result.songs;
-                },function (err){})
+                }, err=>{})
             },
             playMusic(musicId){
                 let that = this;
                 //获取歌曲地址
                 axios.get("https://autumnfish.cn/song/url?id="+musicId)
-                .then(function (response){
-                    // console.log(response.data);
+                .then(response=>{
                     that.musicUrl = response.data.data[0].url;
-                },function (err){});
+                },err=>{});
 
                 //获取歌曲详情
                 axios.get("https://autumnfish.cn/song/detail?ids="+musicId)
-                .then(function (response){
+                .then(response=>{
                     that.musicCover = response.data.songs[0].al.picUrl;
-                },function (err){});
+                },err=>{});
 
                 //获取歌曲详情
                 axios.get("https://autumnfish.cn/comment/hot?type=0&id="+musicId)
-                .then(function (response){
+                .then(response=>{
                     that.hotComments = response.data.hotComments;
-                    console.log(response);
-                },function (err){});
+                },err=>{});
             },
             play(){
                 this.isPlaying = true;
@@ -117,12 +116,11 @@
             playMv(mvid){
                 let that = this;
                 axios.get("https://autumnfish.cn/mv/url?id="+mvid)
-                    .then(function (response){
-                        console.log(response.data.data.url);
+                    .then(response=>{
                         that.isShow = true;
                         that.$refs.audio.pause();
                         that.mvUrl = response.data.data.url;
-                    },function (err){});
+                    },err=>{});
             },
             hide(){
                 this.isShow = false;
@@ -131,6 +129,7 @@
 
         }
     })
+    app.mount('#app');
 </script>
 </body>
 </html>
