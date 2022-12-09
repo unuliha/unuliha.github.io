@@ -16,7 +16,7 @@
             <div class="center_con">
                 <div class="song_wrapper">
                     <div class="song_list_wrapper">
-                    <ul class="song_list" :if="musicList.length>0">
+                    <ul class="song_list">
                         <li v-for="item in musicList">
                             <a href="javascript:;" @click = "playMusic(item.id)"></a>
                             <b>{{item.name}}</b>
