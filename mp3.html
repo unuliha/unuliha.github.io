@@ -10,15 +10,22 @@
         <div class="play_wrap" id="player">
             <div class="search_bar">
                 <img src="https://gitee.com/unuliha/img01/raw/master/portrait.jpg" alt="htly"/>
-                <input type="text" autocomplete="off" v-model="query"
-                       @keyup.enter="searchMusic" placeholder="请输入歌手名或歌曲名">
+                <div class="search-box">
+                    <input type="text" autocomplete="off" v-model="query"
+                           @keyup.enter="searchMusic" placeholder="请输入歌手名或歌曲名">
+                    <img 
+                        id='search-icon' 
+                        src="https://nextlab.oss-cn-shanghai.aliyuncs.com/img/9FeKnVlohsY3krO.png"
+                        @click="searchMusic"
+                    >
+                </div>
             </div>
             <div class="center_con">
                 <div class="song_wrapper">
-                    <div class="song_list_wrapper">
-                    <ul class="song_list">
+                    <div class="song_list_wrapper" ref = 'song_list_wrapper'>
+                    <ul class="song_list" :if = "musicList && musicList.length>0">
                         <li v-for="item in musicList">
-                            <a href="javascript:;" @click = "playMusic(item.id)"></a>
+                            <a @click = "playMusic(item.id)"></a>
                             <b>{{item.name}}</b>
                             <span v-if="item.mv>0" @click="playMv(item.mv)">
                                 <i></i>
@@ -34,13 +41,13 @@
                     <img :src="musicCover" class="cover autoRotate"/>
                 </div>
 <!--                评论容器-->
-                <div class="comment_wrapper">
+                <div class="comment_wrapper"  ref = 'comment_list'>
                     <h5 class="title">热门留言</h5>
                     <div class="comment_list">
                         <dl v-for="item in hotComments">
                             <div>
                                 <dt>
-                                    <img :src="item.user.avatarUrl" alt=""/>
+                                    <img :src="item.user.avatarUrl"/>
                                 </dt>
                                 <dd class="name">{{item.user.nickname}}</dd>
                             </div>
@@ -70,6 +77,8 @@
             return {
             query:'',
             musicList:[],
+            songNum:0,
+            conmmentNum:0,
             musicUrl:'',
             musicCover:'',
             hotComments:[],
@@ -80,31 +89,56 @@
         },
         methods:{
             searchMusic(){
-                let that = this;
-                axios.get("https://autumnfish.cn/search?keywords="+that.query)
+                if (this.query === '') {
+                    console.log('请输入正确的歌曲名或歌手名！');
+                    return;
+                }
+                axios.get("https://autumnfish.cn/search?keywords="+this.query)
                 .then( (response)=>{
-                    that.musicList = response.data.result.songs;
-                }, err=>{})
+                    this.musicList = response.data.result.songs;
+                    this.songNum = response.data.result.songCount;
+                })
             },
-            playMusic(musicId){
-                let that = this;
+            loadmoreMusic() {
+                const temLength = this.musicList.length;
+                if (temLength===this.songNum) {
+                    return;
+                }
+                axios.get("https://autumnfish.cn/search?keywords="+this.query+"&limit=30"+"&offset="+temLength)
+                .then( (response)=>{
+                    this.musicList.push(...response.data.result.songs);
+                })
+            },
+            playMusic(musicId){ 
                 //获取歌曲地址
                 axios.get("https://autumnfish.cn/song/url?id="+musicId)
                 .then(response=>{
-                    that.musicUrl = response.data.data[0].url;
-                },err=>{});
+                    this.musicUrl = response.data.data[0].url;
+                     this.isPlaying = true;
+                });
 
                 //获取歌曲详情
                 axios.get("https://autumnfish.cn/song/detail?ids="+musicId)
                 .then(response=>{
-                    that.musicCover = response.data.songs[0].al.picUrl;
-                },err=>{});
+                    this.musicCover = response.data.songs[0].al.picUrl;
+                });
 
                 //获取歌曲详情
                 axios.get("https://autumnfish.cn/comment/hot?type=0&id="+musicId)
                 .then(response=>{
-                    that.hotComments = response.data.hotComments;
-                },err=>{});
+                    this.hotComments = response.data.hotComments;
+                    this.conmmentNum = response.data.total;
+                });
+            },
+            loadmoreComment() {
+                const temLength = this.hotComments.length;
+                if (temLength===this.conmmentNum) {
+                    return;
+                }
+                axios.get("https://autumnfish.cn/comment/hot?type=0&id="+musicId+"&limit=30"+"&offset="+temLength)
+                .then(response=>{
+                    this.hotComments.push(...response.data.hotComments);
+                });
             },
             play(){
                 this.isPlaying = true;
@@ -114,12 +148,11 @@
                 this.isPlaying = false;
             },
             playMv(mvid){
-                let that = this;
                 axios.get("https://autumnfish.cn/mv/url?id="+mvid)
                     .then(response=>{
-                        that.isShow = true;
-                        that.$refs.audio.pause();
-                        that.mvUrl = response.data.data.url;
+                        this.isShow = true;
+                        this.$refs.audio.pause();
+                        this.mvUrl = response.data.data.url;
                     },err=>{});
             },
             hide(){
@@ -127,7 +160,17 @@
                 this.$refs.video.pause();
             }
 
-        }
+        },
+        mounted(){
+            this.$refs.song_list_wrapper.addEventListener('scroll',($event)=>{
+                const scrollTop = this.$refs.song_list_wrapper.scrollTop;
+                const scrollHeight = this.$refs.song_list_wrapper.scrollHeight;
+                const clientHeight = this.$refs.song_list_wrapper.clientHeight;
+                if (scrollTop + clientHeight >= scrollHeight) {
+                    this.loadmoreMusic();
+                }
+            });
+        },
     })
     app.mount('#app');
 </script>
