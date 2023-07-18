@@ -1,0 +1,179 @@
+section,header,article,nav{
+    display: block;
+}
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    margin:1em 10%;
+    background-attachment: fixed;
+    background-position: top left;
+    background-repeat: repeat-x;
+}
+header{
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    border-width: .1em;
+    border-style: solid;
+    border-bottom-width: 0;
+}
+header img {
+   width: 100%;
+}
+header nav{
+    background-position: bottom left;
+    background-repeat: repeat-x;
+    border-width: .1em;
+    border-style: solid;
+    border-bottom-width: 0;
+    padding-left: 10%;
+}
+header nav ul{
+    width: 100%;
+    overflow: hidden;
+    border-left-width: .1em;
+    border-left-style: solid;
+}
+header nav li{
+    display: inline;
+}
+header nav li a{
+    display: block;
+    float: left;
+    padding: .5em 2em;
+    border-right: .1em solid;
+}
+article{
+    border-width: .1em;
+    border-style: solid;
+    border-top-width: 0;
+    padding: 2em 10%;
+    line-height: 1.8em;
+}
+article img{
+    border-width: .1em;
+    border-style: solid;
+    outline-width: .1em;
+    outline-style: solid;
+}
+td{
+    padding: .5em 3em;
+}
+
+dl{
+    overflow: hidden;
+}
+dt{
+    float: left;
+}
+dd{
+    float: left;
+}
+table{
+    margin:auto;
+}
+
+#imagegallery li{
+    display: inline;
+}
+#placeholder{
+    width: 100%;
+    height: 600px;
+}
+
+article nav {
+    font-size: 1.5em;
+}
+
+#placeholder1 {
+    margin: 0 auto;
+    width: 100%;
+    height: 600px;
+}
+label{
+    display: block;
+}
+fieldset{
+    border:0;
+}
+
+#all{
+    background-color: #fff;
+    position: relative;
+}
+#picSwichArrow {
+    position: relative;
+    width: 100%;
+    height: 100px;
+    overflow: hidden;
+    margin: 20px 0;
+}
+.arrowbtn_left {
+    position: absolute;
+    left: 0;
+    top: 25px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+.arrowbtn_right {
+    position: absolute;
+    right: 0;
+    top: 25px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+#picSwichArrow .arrowbtn_left img{
+    width: 100%;
+}
+#picSwichArrow .arrowbtn_right img{
+    width: 100%;
+}
+.vg_tasklist {
+    position: absolute;
+    overflow: hidden;
+    margin: 0px 50px 0px 50px;
+    /*width: 75%;*/
+    height: 100%;
+    /* text-align: center; */
+    /* left: 0px; */
+}
+
+.vg_tasklist ul {
+    /*width: 100%;*/
+    display: inline-block;
+    overflow: hidden;
+    height: 100px;
+    flex-wrap: nowrap;
+}
+
+.vg_tasklist li{
+    width: 100px;
+    height: 100px;
+    left: 0px;
+    justify-content:space-between;
+    border:1px solid #c8c8c8;
+    position: relative;
+    float: left;
+}
+#big_left{
+    position: absolute;
+    left: 0;
+    width: 50px;
+    top:50%;
+}
+#big_right{
+    position: absolute;
+    right: 0;
+    width: 50px;
+    top:50%;
+}
+#bigImage img{
+    max-width: 72em;
+}
+#bigImage {
+    display: flex;
+    justify-content: center;
+}

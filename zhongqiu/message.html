@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="referrer" content="no-referrer">
+    <title>陶大王和刘大哥的小中秋</title>
+    <link rel="stylesheet" media="screen" href="styles/basic.css">
+</head>
+<body>
+<header>
+    <img src="images/head.jpg" alt="中秋侧卧图"/>
+    <nav>
+        <ul>
+            <li><a href="index.html">首页</a></li>
+            <li><a href="intro.html">介绍</a></li>
+            <li><a href="photos.html">相册</a></li>
+            <li><a href="feel.html">日常</a></li>
+            <li><a href="message.html">留言</a></li>
+        </ul>
+    </nav>
+</header>
+<article>
+    <h1>留言板</h1>
+    <form method="post" action="submit.html">
+        <fieldset>
+            <p>
+                <label for="name">称呼：</label>
+                <input type="text" id="name" name= "称呼" placeholder = "你的称呼" required="requried"/>
+            </p>
+            <p>
+                <label for="email">邮箱：</label>
+                <input type="email" id="email" name= "邮箱" placeholder = "你的邮箱地址" required="requried"/>
+            </p>
+            <p>
+                <label for="message">留言：</label>
+                <textarea cols="45" rows="7" id="message" name= "留言" placeholder = "说点儿什么吧"
+                          required="requried"></textarea>
+            </p>
+            <input type="submit" value="提交"/>
+        </fieldset>
+    </form>
+</article>
+<script src="scripts/global.js"></script>
+</body>
+</html>
