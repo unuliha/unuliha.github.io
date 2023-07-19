@@ -107,8 +107,6 @@ function preparePlaceholder(){
     bigImage.append(placeholder);
     bigImage.append(placeholder1);
     insertAfter(bigImage,gallery);
-    // insertAfter(placeholder,gallery);
-    // insertAfter(placeholder1,placeholder);
     placeholder1.style.display = "none";
 }
 
@@ -120,8 +118,6 @@ function prepareGallery(){
     links = gallery.getElementsByTagName("a");
     for (var i = 0;i<links.length;i++){
         links[i].onclick = function (){
-            // showPic(this); //用this关键字，减少DOM数搜素次数
-            // return false;
             return showPic(this);
         }
     }
@@ -156,6 +152,7 @@ function prepareInternalnav(){
             return false;
         }
     }
+    this.showSection('welcome');
 }
 
 function isFilled(field){

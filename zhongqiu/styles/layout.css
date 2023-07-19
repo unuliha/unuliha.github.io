@@ -51,12 +51,7 @@ article{
     padding: 2em 10%;
     line-height: 1.8em;
 }
-article img{
-    border-width: .1em;
-    border-style: solid;
-    outline-width: .1em;
-    outline-style: solid;
-}
+
 td{
     padding: .5em 3em;
 }
@@ -78,7 +73,7 @@ table{
     display: inline;
 }
 #placeholder{
-    width: 100%;
+    width: fit-content;
     height: 600px;
 }
 
@@ -163,12 +158,14 @@ fieldset{
     left: 0;
     width: 50px;
     top:50%;
+    cursor: pointer;
 }
 #big_right{
     position: absolute;
     right: 0;
     width: 50px;
     top:50%;
+    cursor: pointer;
 }
 #bigImage img{
     max-width: 72em;
