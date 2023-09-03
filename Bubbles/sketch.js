@@ -1,4 +1,5 @@
 let bubbles = [];
+// 传入直径
 const diameter = 150;
 const numBubble = 20;
 
