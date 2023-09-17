@@ -8,6 +8,7 @@ class Bubble {
       random(-this.speed, this.speed),
       random(-this.speed, this.speed)
     );
+    // 相对画布颜色30灰度随机生成颜色
     this.col = color(random(30, 255), random(30, 255), random(30, 255));
   }
 
@@ -38,7 +39,7 @@ class Bubble {
   update() {
     this.pos.add(this.vel);
     let rad = this.dia / 2;
-
+    // 碰到四周之后的处理
     if (this.pos.x - rad <= 0) {
       this.vel.x *= -1;
       this.pos.x = rad;
@@ -58,15 +59,17 @@ class Bubble {
   }
 
   draw() {
+    // 设置亮点，用于模拟反光
     push();
     stroke("white");
     ellipse(this.pos.x - this.rad + 5, this.pos.y, 2, 6);
-
+    // 正式的圆
     push();
     noFill();
     stroke(this.col);
     strokeWeight(2);
     ellipse(this.pos.x, this.pos.y, this.dia);
+    // 不断地刷新圆的位置，从而达到动画效果
     pop();
   }
 }
