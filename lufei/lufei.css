@@ -1,0 +1,23 @@
+#slideshow{
+    width: 100px;
+    height: 500px;
+    position: relative;
+    overflow: hidden;
+    float: left;
+}
+
+#description{
+    text-indent:2em;
+    line-height: 200%;
+    font-family: "Helvetica", "Arial", sans-serif;
+}
+#preview{
+    position: absolute;
+}
+#people{
+    float:left;
+}
+h1{
+    text-align: center;
+}
+
