@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>你幸福么？调查问卷</title>
+    <link rel="stylesheet" href="happy.css" media="screen" />
+</head>
+
+<!-- 
+
+Hello Camper!
+
+For now, the test suite only works in Chrome! Please read the README below in the JS Editor before beginning. Feel free to delete this message once you have read it. Good luck and Happy Coding! 
+
+- The freeCodeCamp Team 
+
+-->
+<body>
+    <div id="container">
+       <header class="header">
+        <h1 id="title" class="text-center">"你幸福么？"调查问卷</h1>
+        <p id="description" class="description text-center">
+          百姓心声调查
+        </p>
+      </header>
+      <form id="survey-form">
+        <div class="form-group">
+          <label id="name-label" for="name">姓名</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            class="form-control"
+            placeholder="输入你的姓名"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label id="email-label" for="email">邮箱</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            class="form-control"
+            placeholder="输入你的邮箱地址"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label id="number-label" for="number"
+            >年龄<span class="clue">(可选)</span></label
+          >
+          <input
+            type="number"
+            name="age"
+            id="number"
+            min="10"
+            max="99"
+            class="form-control"
+            placeholder="年龄"
+          />
+        </div>
+        <div class="form-group">
+          <p>你的学历?</p>
+          <select id="dropdown" name="edu" class="form-control" required>
+            <option disabled selected value>当前的学历</option>
+            <option value="初中以前">初中以前</option>
+            <option value="高中或中专">高中或中专</option>
+            <option value="本科或大专">本科或大专</option>
+            <option value="研究生">硕士及以上</option>
+            <option value="preferNo">保密</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <p>你的性格?</p>
+          <select id="dropdown" name="edu" class="form-control" required>
+            <option disabled selected value>你觉得下面哪种性格描述最符合你？</option>
+            <option value="完美型">完美型（追求不断进步）</option>
+            <option value="助人型">助人型（追求帮助别人）</option>
+            <option value="成就型">成就型（追求成果）</option>
+            <option value="自我型">自我型（追求独特）</option>
+            <option value="理智型">理智型（追求知识）</option>
+            <option value="忠诚型">忠诚型（追求忠心）</option>
+            <option value="活跃型">活跃型（追求快乐）</option>
+            <option value="领袖型">领袖型（追求权力）</option>
+            <option value="和平型">和平型（追求和平）</option>
+          </select>
+        </div>
+        
+        <div class="form-group" >
+          <p>你觉得自己幸福么？</p>
+          <label>
+            <input
+              name="幸福么"
+              value="很幸福"
+              type="radio"
+              class="input-radio"
+              checked
+            />很幸福</label
+          >
+          <label>
+            <input
+              name="幸福么"
+              value="比较幸福"
+              type="radio"
+              class="input-radio"
+            />比较幸福</label
+          >
+    
+          <label
+            ><input
+              name="幸福么"
+              value="一般"
+              type="radio"
+              class="input-radio"
+            />一般</label
+          >
+          <label
+            ><input
+              name="幸福么"
+              value="不太幸福"
+              type="radio"
+              class="input-radio"
+            />不太幸福</label
+          >
+          <label
+            ><input
+              name="幸福么"
+              value="不幸福"
+              type="radio"
+              class="input-radio"
+            />不幸福</label
+          >
+        </div>
+        
+        <div class="form-group">
+          <p>你觉得人生哪个阶段最幸福？</p>
+          <label>
+            <input
+              name="幸福阶段"
+              value="初高中及以前"
+              type="radio"
+              class="input-radio"
+              checked
+            />初高中及以前</label
+          >
+          <label>
+            <input
+              name="幸福阶段"
+              value="大学研究生时期"
+              type="radio"
+              class="input-radio"
+            />大学研究生时期</label
+          >
+    
+          <label
+            ><input
+              name="幸福阶段"
+              value="毕业工作挣钱买房时期"
+              type="radio"
+              class="input-radio"
+            />毕业工作挣钱买房时期</label
+          >
+          <label
+            ><input
+              name="幸福阶段"
+              value="带娃（18岁之前）时期"
+              type="radio"
+              class="input-radio"
+            />带娃（18岁之前）时期</label
+          >
+          <label
+            ><input
+              name="幸福阶段"
+              value="娃成年但未结婚生娃时期"
+              type="radio"
+              class="input-radio"
+            />娃成年但未结婚生娃时期</label>
+          <label
+            ><input
+              name="幸福阶段"
+              value="当爷爷婆婆时期"
+              type="radio"
+              class="input-radio"
+            />当爷爷婆婆时期</label>
+        </div>
+    
+        <div class="form-group">
+          <p>
+            你的幸福来源？
+            <span class="clue">(Check all that apply)</span>
+          </p>
+    
+          <label
+            ><input
+              name="prefer"
+              value="学习获得满足感"
+              type="checkbox"
+              class="input-checkbox"
+            />学习获得满足感</label
+          >
+          <label>
+            <input
+              name="prefer"
+              value="运动感觉到快乐"
+              type="checkbox"
+              class="input-checkbox"
+            />运动感觉到快乐</label
+          >
+          <label
+            ><input
+              name="prefer"
+              value="聊天带来的欢愉"
+              type="checkbox"
+              class="input-checkbox"
+            />聊天带来的欢愉</label
+          >
+          <label
+            ><input
+              name="prefer"
+              value="和爱人或朋友在一起"
+              type="checkbox"
+              class="input-checkbox"
+            />和爱人或朋友在一起</label
+          >
+          <label
+            ><input
+              name="prefer"
+              value="挣钱带来的成就感"
+              type="checkbox"
+              class="input-checkbox"
+            />挣钱带来的成就感</label
+          >
+          <label
+            ><input
+              name="prefer"
+              value="旅游散步阅读电影听音乐煲剧的轻松闲散"
+              type="checkbox"
+              class="input-checkbox"
+            />旅游散步阅读电影听音乐煲剧的轻松闲散</label
+          >
+          <label
+            ><input
+              name="prefer"
+              value="做饭、代码、绘画、音乐、手工艺等完成作品时的成就感"
+              type="checkbox"
+              class="input-checkbox"
+            />做饭、代码、绘画、音乐、手工艺等完成作品时的成就感</label
+          >
+        </div>
+    
+        <div class="form-group">
+          <p>
+            你认为不可或缺的幸福是什么？
+            <span class="clue">(Check all that apply)</span>
+          </p>
+    
+          <label
+            ><input
+              name="不可或缺"
+              value="家人朋友的爱与关怀"
+              type="checkbox"
+              class="input-checkbox"
+            />家人朋友的爱与关怀</label
+          >
+          <label
+            ><input
+              name="不可或缺"
+              value="同事上司的尊重"
+              type="checkbox"
+              class="input-checkbox"
+            />同事上司的尊重</label
+          >
+         <label
+            ><input
+              name="不可或缺"
+              value="政府、社会对自己的理解与支持"
+              type="checkbox"
+              class="input-checkbox"
+            />政府、社会对自己的理解与支持</label
+          >
+          <label
+            ><input
+              name="不可或缺"
+              value="家人朋友身体健康，心态积极乐观"
+              type="checkbox"
+              class="input-checkbox"
+            />家人朋友身体健康，心态积极乐观</label
+          >
+          <label
+            ><input
+              name="不可或缺"
+              value="自身在不断地变得更好"
+              type="checkbox"
+              class="input-checkbox"
+            />自身在不断地变得更好</label
+          >
+          <label
+            ><input
+              name="不可或缺"
+              value="相信自己的路，不再羡慕别人"
+              type="checkbox"
+              class="input-checkbox"
+            />相信自己的路，不再羡慕别人</label
+          >
+          <label
+            ><input
+              name="不可或缺"
+              value="做出的东西是有价值的"
+              type="checkbox"
+              class="input-checkbox"
+            />做出的东西是有价值的</label
+          >
+        </div>
+        
+        <div class="form-group">
+          <p>
+            你认为可能造成大家不幸福的原因是什么？
+            <span class="clue">(Check all that apply)</span>
+          </p>
+    
+          <label
+            ><input
+              name="不幸福原因"
+              value="学业压力"
+              type="checkbox"
+              class="input-checkbox"
+            />学业压力</label
+          >
+           <label
+            ><input
+              name="不幸福原因"
+              value="就业压力"
+              type="checkbox"
+              class="input-checkbox"
+            />就业压力</label
+          >
+           <label
+            ><input
+              name="不幸福原因"
+              value="生活压力"
+              type="checkbox"
+              class="input-checkbox"
+            />生活压力</label
+          >
+           <label
+            ><input
+              name="不幸福原因"
+              value="目标不明确"
+              type="checkbox"
+              class="input-checkbox"
+            />目标不明确</label
+          >
+          
+           <label
+            ><input
+              name="不幸福原因"
+              value="缺乏意志力"
+              type="checkbox"
+              class="input-checkbox"
+            />缺乏意志力</label
+          >
+           <label
+            ><input
+              name="不幸福原因"
+              value="心态过于浮躁"
+              type="checkbox"
+              class="input-checkbox"
+            />心态过于浮躁</label
+          >
+           <label
+            ><input
+              name="不幸福原因"
+              value="其他因素"
+              type="checkbox"
+              class="input-checkbox"
+            />其他因素</label
+          >
+        
+        <div class="form-group">
+          <p>给幸福指数自评较低的人的一句鼓励：</p>
+          <textarea
+            id="comments"
+            class="input-textarea"
+            name="comment"
+            placeholder="输入你的鼓励话语..."
+          ></textarea>
+        </div>
+    
+        <div class="form-group">
+          <button type="submit" id="submit" class="submit-button">
+            提交
+          </button>
+        </div>
+      </form>
+    </div>
+</body>
