@@ -1,8 +1,4 @@
 {
-    "mp3":{
-        "href":"./music_player/index.html",
-        "label":"自制音乐播放器（by Vue2.0）"
-    },
     "zhongqiu":{
         "href":"./zhongqiu/index.html",
         "label":"中秋的博客（by js）"
@@ -26,5 +22,9 @@
     "yuanlongping":{
         "href":"./yuanlongping/index.html",
         "label":"袁隆平生平（静态页面）"
+    },
+    "slidePuzzle":{
+        "href":"./vue-puzzle-master/index.html",
+        "label":"滑动拼图"
     }
 }
