@@ -25,6 +25,6 @@
     },
     "slidePuzzle":{
         "href":"./vue-puzzle-master/index.html",
-        "label":"滑动拼图"
+        "label":"滑动拼图（by Vue2）"
     }
 }
