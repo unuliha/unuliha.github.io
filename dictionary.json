@@ -24,7 +24,7 @@
         "label":"袁隆平生平（静态页面）"
     },
     "slidePuzzle":{
-        "href":"./vue-puzzle-master/index.html",
-        "label":"滑动拼图（by Vue2）"
+        "href":"./vue3_slide_puzzle/index.html",
+        "label":"滑动拼图（by Vue3）"
     }
 }
