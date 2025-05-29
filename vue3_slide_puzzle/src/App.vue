@@ -16,10 +16,10 @@
     </div>
 </template>
    
-<script setup>
+<script setup lang="js">
   import { ref, onMounted } from 'vue';
    
-  const puzzles = ref([]);
+  let puzzles = ref([]);
    
   // 初始化游戏 
   const render = () => {
@@ -40,25 +40,30 @@
     puzzleArr = puzzleArr.sort(()  => Math.random()  - 0.5);
 
     // 判断是否无解
-    let inversion_num = 1;
+    let inversion_num = computeInverseNum(puzzleArr);
 
+    // 无解就重新打乱数组，直到有解 
     while (inversion_num % 2) {
-      inversion_num = 0;
-
-      // 随机打乱数组 
       puzzleArr = puzzleArr.sort(()  => Math.random()  - 0.5);
+      inversion_num = computeInverseNum(puzzleArr);
+    }
+ 
+    return puzzleArr;
+  }
 
-      for (let i=0;i<14;i++){
-        if (puzzleArr[i+1]<puzzleArr[i]) {
-          inversion_num++;
+  // 计算逆序数
+  const computeInverseNum = (arr) => {
+    const len = arr.length;
+    let inversionNum = 0;
+
+    for (let i=0;i<len-1;i++){
+      for (let j=i+1;j<len;j++){
+        if (arr[i]>arr[j]) {
+          inversionNum++;
         }
       }
     }
-
-    console.log(inversion_num);
-    
-
-    return puzzleArr;
+    return inversionNum;
   }
    
   // 移动方块逻辑 
@@ -94,8 +99,8 @@
   };
    
   // 胜利检测 
-  const passFn = () => {
-    if (puzzles.value[[15]()]   === '') {
+  const passFn = () => { 
+    if (puzzles._rawValue[[15]]   === '') {
       const newPuzzles = puzzles.value.slice(0,  15);
       const isPass = newPuzzles.every((e,  i) => e === i + 1);
       if (isPass) {
