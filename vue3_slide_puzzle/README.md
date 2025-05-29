@@ -1,0 +1,3 @@
+# vue3_slide_puzzle
+
+这是一个用vue3编写的数字滑块小游戏
