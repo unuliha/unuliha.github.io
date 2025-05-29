@@ -10,24 +10,23 @@
           {{ puzzle }}
         </li>
       </ul>
-      <button class="btn btn-warning btn-block btn-reset" @click="render">
+      <button class="btn btn-warning btn-block btn-reset" @click="reset">
         重置游戏 
       </button>
     </div>
 </template>
    
-<script setup lang="js">
-  import { ref, onMounted } from 'vue';
+<script setup lang="ts">
+  import { onMounted, reactive } from 'vue';
    
-  let puzzles = ref([]);
+  let puzzles:Array<number | string> = reactive([]);
    
   // 初始化游戏 
   const render = () => {
-
     const puzzleArr = getRandomArr();
     
     // 添加空白格
-    puzzles.value  = [...puzzleArr, ''];
+    puzzles.push(...puzzleArr, '');
   };
 
   // 计算随机数组，避免无解情况
@@ -52,7 +51,7 @@
   }
 
   // 计算逆序数
-  const computeInverseNum = (arr) => {
+  const computeInverseNum = (arr: any[]):number => {
     const len = arr.length;
     let inversionNum = 0;
 
@@ -67,32 +66,32 @@
   }
    
   // 移动方块逻辑 
-  const moveFn = (index) => {
-    const curNum = puzzles.value[index]; 
-    const leftNum = puzzles.value[index  - 1];
-    const rightNum = puzzles.value[index  + 1];
-    const topNum = puzzles.value[index  - 4];
-    const bottomNum = puzzles.value[index  + 4];
+  const moveFn = (index: number) => {
+    const curNum = puzzles[index]; 
+    const leftNum = puzzles[index  - 1];
+    const rightNum = puzzles[index  + 1];
+    const topNum = puzzles[index  - 4];
+    const bottomNum = puzzles[index  + 4];
    
     // 左移条件：左边是空且不在第一列
     if (leftNum === '' && index % 4 !== 0) {
-      puzzles.value[index  - 1] = curNum;
-      puzzles.value[index]  = '';
+      puzzles[index  - 1] = curNum;
+      puzzles[index]  = '';
     }
     // 右移条件：右边是空且不在第四列
     else if (rightNum === '' && (index + 1) % 4 !== 0) {
-      puzzles.value[index  + 1] = curNum;
-      puzzles.value[index]  = '';
+      puzzles[index  + 1] = curNum;
+      puzzles[index]  = '';
     }
     // 上移条件：上方是空 
     else if (topNum === '') {
-      puzzles.value[index  - 4] = curNum;
-      puzzles.value[index]  = '';
+      puzzles[index  - 4] = curNum;
+      puzzles[index]  = '';
     }
     // 下移条件：下方是空 
     else if (bottomNum === '' && index < 12) {
-      puzzles.value[index  + 4] = curNum;
-      puzzles.value[index]  = '';
+      puzzles[index  + 4] = curNum;
+      puzzles[index]  = '';
     }
    
     passFn();
@@ -100,14 +99,20 @@
    
   // 胜利检测 
   const passFn = () => { 
-    if (puzzles._rawValue[[15]]   === '') {
-      const newPuzzles = puzzles.value.slice(0,  15);
+    if (puzzles[15]   === '') {
+      const newPuzzles = puzzles.slice(0,  15);
       const isPass = newPuzzles.every((e,  i) => e === i + 1);
       if (isPass) {
         alert('恭喜，闯关成功！');
       }
     }
   };
+
+  // 重置游戏
+  const reset = () => {
+    puzzles.length = 0;
+    render();
+  }
    
   // 组件挂载时初始化游戏 
   onMounted(() => {
