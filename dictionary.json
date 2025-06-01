@@ -1,15 +1,15 @@
 {
     "zhongqiu":{
         "href":"./zhongqiu/index.html",
-        "label":"中秋的博客（by js）"
+        "label":"猫咪的博客（by js）"
     },
     "bubble":{
         "href":"./Bubbles/index.html",
-        "label":"模拟window汽包屏保（by p5.js）"
+        "label":"模拟window气泡屏保（by p5.js）"
     },
     "rain":{
         "href":"./rain/index.html",
-        "label":"模拟雨滴（by p5.js）"
+        "label":"模拟雨滴屏保（by p5.js）"
     },
     "lufei":{
         "href":"./lufei/lufei.html",
@@ -25,6 +25,6 @@
     },
     "slidePuzzle":{
         "href":"./vue3_slide_puzzle/dist/index.html",
-        "label":"滑动拼图（by Vue3）"
+        "label":"滑动拼图游戏（by Vue3）"
     }
 }
