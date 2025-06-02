@@ -5,7 +5,7 @@
     },
     "bubble":{
         "href":"./Bubbles/index.html",
-        "label":"模拟window气泡屏保（by p5.js）"
+        "label":"模拟气泡屏保（by p5.js）"
     },
     "rain":{
         "href":"./rain/index.html",
