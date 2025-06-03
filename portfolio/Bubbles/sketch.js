@@ -5,7 +5,7 @@ const numBubble = 20;
 
 function setup() {
     // displayWidth、displayHeight是当前屏幕实际像素尺寸
-    createCanvas(displayWidth,displayHeight-200);
+    createCanvas(displayWidth-30,displayHeight-220);
     background(0);
     
     for(var i=0; i<numBubble; ++i) {
