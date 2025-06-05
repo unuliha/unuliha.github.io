@@ -1,30 +1,34 @@
 {
-    "zhongqiu":{
-        "href":"./zhongqiu/index.html",
-        "label":"猫咪的博客（by js）"
+    "zhongqiu": {
+        "href": "./zhongqiu/index.html",
+        "label": "猫咪的博客（by js）"
     },
-    "bubble":{
-        "href":"./Bubbles/index.html",
-        "label":"模拟气泡屏保（by p5.js）"
+    "bubble": {
+        "href": "./Bubbles/index.html",
+        "label": "模拟气泡屏保（by p5.js）"
     },
-    "rain":{
-        "href":"./rain/index.html",
-        "label":"模拟雨滴屏保（by p5.js）"
+    "rain": {
+        "href": "./rain/index.html",
+        "label": "模拟雨滴屏保（by p5.js）"
     },
-    "lufei":{
-        "href":"./lufei/lufei.html",
-        "label":"路飞和他的伙伴们（by js）"
+    "lufei": {
+        "href": "./lufei/lufei.html",
+        "label": "路飞和他的伙伴们（by js）"
     },
-    "happy":{
-        "href":"./happy/happy.html",
-        "label":"你幸福么？调查问卷（静态页面）"
+    "happy": {
+        "href": "./happy/happy.html",
+        "label": "你幸福么？调查问卷（静态页面）"
     },
-    "yuanlongping":{
-        "href":"./yuanlongping/index.html",
-        "label":"袁隆平生平（静态页面）"
+    "yuanlongping": {
+        "href": "./yuanlongping/index.html",
+        "label": "袁隆平生平（静态页面）"
     },
-    "slidePuzzle":{
-        "href":"./vue3_slide_puzzle/dist/index.html",
-        "label":"滑动拼图游戏（by Vue3）"
+    "slidePuzzle": {
+        "href": "./vue3_slide_puzzle/dist/index.html",
+        "label": "滑动拼图游戏（by Vue3）"
+    },
+    "cssLearn": {
+        "href": "../CSS_learn/index.html",
+        "label": "CSS学习笔记"
     }
 }
