@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <b>1.相邻边框连接处的均分原理，也就是相邻的边框相交的矩形各自占领一个三角形区域</h1>
+        <div id="demo"></div>
+        <pre>
+        <code>
+        #demo {
+            width: 0;
+            height: 0;
+            border-width: 20px;
+            border-style: solid;
+            border-color: transparent transparent red transparent;
+            }
+        </code>
+    </pre>
+        <b>2.更清楚的示例，这里 <code>background-clip: content-box</code>让背景颜色只作用于content</h1>
+            <div id="demo1"></div>
+            <pre>
+        <code>
+        #demo1 {
+            width: 10px;
+            height: 10px;
+            background-color: rgb(171, 185, 70);
+            border-width: 20px;
+            border-style: solid;
+            border-color: red transparent red transparent;
+            background-clip: content-box;
+            }
+        </code>
+    </pre>
+</body>
+<style>
+    #demo {
+        width: 0;
+        height: 0;
+        border-width: 20px;
+        border-style: solid;
+        border-color: transparent transparent red transparent;
+    }
+
+    #demo1 {
+        width: 10px;
+        height: 10px;
+        background-color: rgb(171, 185, 70);
+        border-width: 20px;
+        border-style: solid;
+        border-color: red transparent red transparent;
+        background-clip: content-box;
+    }
+</style>
+
+</html>

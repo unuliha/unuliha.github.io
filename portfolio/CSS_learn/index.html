@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS学习笔记test</title>
+</head>
+
+<body>
+    <section id="works"></section>
+    <script>
+        const display = (data) => {
+            let all = "";
+            let i = 1;
+            for (const key of Object.keys(data)) {
+                const { href, label } = data[key];
+                all += `${i}. <a href=${href}>${label}</a><br>`;
+                i++;
+            }
+            document.getElementById("works").innerHTML = all;
+        };
+        fetch("./dictionary.json")
+            .then((response) => {
+                if (!response.ok) throw new Error("HTTP error");
+                return response.json();
+            })
+            .then((data) => {
+                display(data); // 处理JSON数据
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+            });
+    </script>
+</body>
+
+</html>
