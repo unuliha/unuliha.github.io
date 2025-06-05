@@ -28,7 +28,7 @@
         "label": "滑动拼图游戏（by Vue3）"
     },
     "cssLearn": {
-        "href": "../CSS_learn/index.html",
+        "href": "/CSS_learn/index.html",
         "label": "CSS学习笔记"
     }
 }
