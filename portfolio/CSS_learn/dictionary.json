@@ -1,6 +1,10 @@
 {
-    "zhongqiu": {
+    "triangle": {
         "href": "./triangle.html",
         "label": "如何用纯CSS画一个三角形？"
+    },
+    "pin": {
+        "href": "./pin.html",
+        "label": "如何实现品字布局？"
     }
 }

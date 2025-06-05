@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>品字布局</title>
+</head>
+
+<body>
+    <b>1.用<code>inline-block</code>布局</b>
+    <div class="box1">box1</div>
+    <div class="box">
+        <div class="box2">box2</div>
+        <div class="box3">box3</div>
+    </div>
+    <pre>
+      <code>
+        box是box2和box3的父容器，层级如下：
+        box1
+        box 
+          box2
+          box3
+         
+        .box {
+            /* box2和box3之间默认会有换行符，即出现间隙，加了这句后间隙大小被设置为0，即去掉。但box中的所有字都不再显示 */
+            font-size: 0;
+        }
+
+        .box1 {
+            height: 100px;
+            background-color: greenyellow;
+        }
+
+        .box2 {
+            width: 50%;
+            background-color: aquamarine;
+            /* box2也要设为行内块状元素，否则box2还是要占一整行 */
+            display: inline-block;
+            /* 行内块级元素也要设置宽高，否则按默认值0处理 */
+            height: 100px;
+        }
+
+        .box3 {
+            width: 50%;
+            background-color: rgb(130, 25, 179);
+            display: inline-block;
+            height: 100px;
+        }
+    </code>
+</pre>
+
+    <b>2.用<code>float</code>布局</b>
+    <div class="box4">box4</div>
+    <div class="box5">box5</div>
+    <div class="box6">box6</div>
+    <pre style="clear: both;">
+        <code>
+    .box4 {
+        height: 100px;
+        background-color: greenyellow;
+    }
+
+    .box5 {
+        width: 50%;
+        background-color: aquamarine;
+        /* float脱离文档流，不占用空间，浮动在左侧,但可能遮盖其他元素，解决办法是在被遮盖的元素上加clear:both */
+        float: left;
+        height: 100px;
+    }
+
+    .box6 {
+        width: 50%;
+        background-color: rgb(130, 25, 179);
+        /* 同样的float在左侧，紧贴在上一个float:left元素后面*/
+        float: left;
+        height: 100px;
+    }
+        </code>
+    </pre>
+
+    <b>3.用<code>flexbox</code>布局</b>
+    <div class="box4">box7</div>
+    <div class="flexbox">
+        <div class="box8">box8</div>
+        <div class="box9">box9</div>
+    </div>
+    <pre>
+      <code>
+    flexbox是box8和box9的父容器，层级如下：
+    box7
+    flexbox 
+        box8
+        box9
+         
+    .box7 {
+        height: 100px;
+        background-color: greenyellow;
+    }
+
+    .flexbox {
+        display: flex;
+
+    }
+
+    .box8 {
+        width: 50%;
+        background-color: aquamarine;
+        height: 100px;
+    }
+
+    .box9 {
+        width: 50%;
+        background-color: rgb(130, 25, 179);
+        height: 100px;
+    }
+    </code>
+</pre>
+</body>
+<style>
+    .box {
+        /* box2和box3之间默认会有换行符，即出现间隙，加了这句后间隙大小被设置为0，即去掉 */
+        font-size: 0;
+    }
+
+    .box1 {
+        height: 100px;
+        background-color: greenyellow;
+    }
+
+    .box2 {
+        width: 50%;
+        background-color: aquamarine;
+        /* box2也要设为行内块状元素，否则box2还是要占一整行 */
+        display: inline-block;
+        /* 行内块级元素也要设置宽高，否则按默认值0处理 */
+        height: 100px;
+    }
+
+    .box3 {
+        width: 50%;
+        background-color: rgb(130, 25, 179);
+        display: inline-block;
+        height: 100px;
+    }
+
+    .box4 {
+        height: 100px;
+        background-color: greenyellow;
+    }
+
+    .box5 {
+        width: 50%;
+        background-color: aquamarine;
+        /* float脱离文档流，不占用空间，浮动在左侧 */
+        float: left;
+        height: 100px;
+    }
+
+    .box6 {
+        width: 50%;
+        background-color: rgb(130, 25, 179);
+        /* 同样的float在左侧，紧贴在上一个float:left元素后面*/
+        float: left;
+        height: 100px;
+    }
+
+    .box7 {
+        height: 100px;
+        background-color: greenyellow;
+    }
+
+    .flexbox {
+        display: flex;
+
+    }
+
+    .box8 {
+        width: 50%;
+        background-color: aquamarine;
+        /* flexbox中如果只有一个子元素设置高度，那这个高度将作为整个整个盒子的高度 */
+        height: 100px;
+    }
+
+    .box9 {
+        width: 50%;
+        background-color: rgb(130, 25, 179);
+    }
+</style>
+
+</html>
