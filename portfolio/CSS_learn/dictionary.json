@@ -7,4 +7,8 @@
         "href": "./pin.html",
         "label": "如何实现品字布局？"
     }
+    // "circle": {
+    //     "href": "./circle.html",
+    //     "label": "如何实现chrome转圈等待效果？"
+    // }
 }

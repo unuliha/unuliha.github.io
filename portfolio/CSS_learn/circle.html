@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="loading"></div>
+  </body>
+  <style>
+    .loading {
+      width: 300px;
+      height: 300px;
+      border: 20px solid #4285f4;
+      border-top: 20px solid transparent;
+      /* 盒子长宽一致时，50%盒子宽的半径画出圆形覆盖所有边框 */
+      border-radius: 50%;
+      animation: clip-circle 3s linear infinite,circle 1s linear infinite;
+    }
+
+
+    @keyframes clip-circle {
+      0%,
+      100% {
+        clip-path: inset(50% 0 0 0 round 50%);
+      }
+      25% {
+        clip-path: inset(0 50% 0 0 round 50%);
+      }
+      50% {
+        clip-path: inset(0 0 50% 0 round 50%);
+      }
+      75% {
+        clip-path: inset(0 0 0 50% round 50%);
+      }
+    }
+
+    @keyframes circle {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</html>
