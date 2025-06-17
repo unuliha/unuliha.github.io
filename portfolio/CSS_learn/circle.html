@@ -6,39 +6,74 @@
     <title>Document</title>
   </head>
   <body>
-    优化中
-    <div class="loading"></div>
+    <code>
+      <pre>
+        模拟chrome转圈等待
+        思路：多个盒子设置圆形边框，添加旋转效果，不同盒子设置旋转时差，行成边框长度变化效果
+        要点：
+        1. 子绝父相实现元素覆盖
+        2. 贝塞尔曲线设置运动变化
+        3. clip-path设置区域裁剪
+        4. animation-delay设置动画延时
+      </pre>
+    </code>
+    <div class="lds-ring">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
   </body>
   <style>
-    .loading {
-      width: 300px;
-      height: 300px;
-      border: 20px solid #4285f4;
-      border-top: 20px solid transparent;
-      /* 盒子长宽一致时，50%盒子宽的半径画出圆形覆盖所有边框 */
+    .lds-ring,
+    .lds-ring div {
+      box-sizing: border-box;
+    }
+    .lds-ring {
+      display: inline-block;
+      position: relative;
+      width: 80px;
+      height: 80px;
+    }
+    .lds-ring div {
+      box-sizing: border-box;
+      display: block;
+      position: absolute;
+      width: 64px;
+      height: 64px;
+      margin: 8px;
+      border: 8px solid #4285f4;
       border-radius: 50%;
-      animation: clip-circle 3s linear infinite,circle 1s linear infinite;
+      /* 贝塞尔曲线，先快后慢 */
+      animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+      clip-path: polygon(0 0, 70% 0,50% 50%,0 0);
     }
-
-
-    @keyframes clip-circle {
-      0%,
+    .lds-ring div:nth-child(1) {
+      animation-delay: -0.6s;
+    }
+    .lds-ring div:nth-child(2) {
+      animation-delay: -0.5s;
+    }
+    .lds-ring div:nth-child(3) {
+      animation-delay: -0.4s;
+    }
+    .lds-ring div:nth-child(4) {
+      animation-delay: -0.3s;
+    }
+    .lds-ring div:nth-child(5) {
+      animation-delay: -0.2s;
+    }
+    .lds-ring div:nth-child(6) {
+      animation-delay: -0.1s;
+    }
+    @keyframes lds-ring {
+      0% {
+        transform: rotate(0deg);
+      }
       100% {
-        clip-path: inset(50% 0 0 0);
-      }
-      25% {
-        clip-path: inset(0 50% 0 0);
-      }
-      50% {
-        clip-path: inset(0 0 50% 0);
-      }
-      75% {
-        clip-path: inset(0 0 0 50%);
-      }
-    }
-
-    @keyframes circle {
-      to {
         transform: rotate(360deg);
       }
     }
